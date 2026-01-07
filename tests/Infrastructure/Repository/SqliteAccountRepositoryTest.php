@@ -1,6 +1,6 @@
 <?php
 
-namespace Infrastructure\Repository;
+namespace Test\Infrastructure\Repository;
 
 use Aucoffre\Domain\Entity\Account;
 use Aucoffre\Domain\ValueObject\Amount;

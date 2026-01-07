@@ -1,10 +1,10 @@
 # Mes retours
 - J'aurais pu ajouter des tests end to end en utilisant le HttpClient mais je ne l'ai pas fait, je suis passé par insomnia
 - En temps normal, j'aurais mis tous les montants en centimes pour n'avoir aucun float et ne manipuler que des integer.
-- Je n'ai pas utiliser de Domain Service, j'ai préféré mettre un max de logique métier dans les entités pour éviter d'avoir
+- Je n'ai pas utilisé de Domain Service, j'ai préféré mettre un max de logique métier dans les entités afin éviter d'avoir
 des entités anémique.
 - J'ai ajouté la couche Application pour séparer la logique applicative de la logique métier.
-- Test très intéressant permettant de mettre en pratique des éléments DDD et de l'architecture hexagonale dans le but de 
+- Test très intéressant permettant de mettre en pratique des éléments DDD et d'architecture hexagonale dans le but de 
 protéger le domain métier du monde extérieur.
 
 
