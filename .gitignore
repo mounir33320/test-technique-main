@@ -1,0 +1,19 @@
+# Dépendances
+/vendor/
+
+# Env
+.env
+.env.local
+
+# Db
+/database/*.db
+/database/*.sqlite
+/database/*.sqlite3
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

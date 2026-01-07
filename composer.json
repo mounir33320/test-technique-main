@@ -1,0 +1,39 @@
+{
+  "name": "aucoffre/test",
+  "description": "Projet dédié aux tests technique AuCOFFRE.com",
+  "type": "project",
+  "scripts": {
+    "serve": "php -S 0.0.0.0:8080 -t public"
+  },
+  "config": {
+    "process-timeout": 0
+  },
+  "require": {
+    "php": "^8.4",
+    "ext-intl": "*",
+    "ext-pdo": "*",
+    "slim/slim": "^4.15",
+    "php-di/php-di": "^7.1",
+    "nyholm/psr7": "^1.8",
+    "nyholm/psr7-server": "^1.1",
+    "psr/http-server-middleware": "^1.0",
+    "psr/http-client": "^1.0",
+    "vlucas/phpdotenv": "^5.6",
+    "symfony/http-client": "^7.3"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^7.3",
+    "filp/whoops": "^2.18",
+    "phpunit/phpunit": "^12.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Aucoffre\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\": "tests/"
+    }
+  }
+}
