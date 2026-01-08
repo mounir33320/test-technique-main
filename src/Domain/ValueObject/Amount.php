@@ -2,6 +2,7 @@
 
 namespace Aucoffre\Domain\ValueObject;
 
+use Aucoffre\Domain\Exception\NegativeAmountException;
 use Aucoffre\Domain\Exception\NegativeBalanceException;
 use Locale;
 use NumberFormatter;
@@ -15,9 +16,22 @@ final readonly class Amount
     /**
      * @param float $value La valeur du prix
      */
-    public function __construct(
+    private function __construct(
         private float $value
     ) {
+    }
+
+    public static function fromFloat(float $value): self
+    {
+        if ($value < 0) {
+            throw new NegativeAmountException(
+                'error.amount.invalid_amount',
+                'Invalid amount',
+                sprintf("Amount \"%s\" must not be negative.", $value)
+            );
+        }
+
+        return new self($value);
     }
 
     /**

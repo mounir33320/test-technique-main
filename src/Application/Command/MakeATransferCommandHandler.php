@@ -2,7 +2,7 @@
 
 namespace Aucoffre\Application\Command;
 
-use Aucoffre\Domain\Exception\AccountNotFound;
+use Aucoffre\Domain\Exception\AccountNotFoundException;
 use Aucoffre\Domain\Exception\CannotTransferToTheSameAccountException;
 use Aucoffre\Domain\Exception\NegativeAmountException;
 use Aucoffre\Domain\Repository\AccountRepositoryPort;
@@ -16,7 +16,7 @@ class MakeATransferCommandHandler
     /**
      * @throws NegativeAmountException
      * @throws CannotTransferToTheSameAccountException
-     * @throws AccountNotFound
+     * @throws AccountNotFoundException
      */
     public function execute(MakeATransferCommand $command): void
     {
@@ -49,11 +49,11 @@ class MakeATransferCommandHandler
     }
 
     /**
-     * @throws AccountNotFound
+     * @throws AccountNotFoundException
      */
     private function throwAccountNotFound(int $id): void
     {
-        throw new AccountNotFound(
+        throw new AccountNotFoundException(
             'error.account.not_found',
             'Account not found',
             sprintf("Account with id '%s' not found.", $id)

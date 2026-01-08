@@ -5,7 +5,7 @@ namespace Test\Application\Command\MakeATransfer;
 use Aucoffre\Application\Command\MakeATransferCommand;
 use Aucoffre\Application\Command\MakeATransferCommandHandler;
 use Aucoffre\Domain\Entity\Account;
-use Aucoffre\Domain\Exception\AccountNotFound;
+use Aucoffre\Domain\Exception\AccountNotFoundException;
 use Aucoffre\Domain\Exception\CannotTransferToTheSameAccountException;
 use Aucoffre\Domain\Exception\NegativeAmountException;
 use Aucoffre\Domain\Exception\NegativeBalanceException;
@@ -36,12 +36,12 @@ class MakeATransferCommandHandlerTest extends TestCase
         $this->handler->execute($command);
 
         $this->assertEquals(
-            new Amount(0)->format(),
+            Amount::fromFloat(0)->format(),
             $this->repository->accounts[self::ACCOUNT_ID_A]->jsonSerialize()['amount']
         );
 
         $this->assertEquals(
-            new Amount(10)->format(),
+            Amount::fromFloat(10)->format(),
             $this->repository->accounts[self::ACCOUNT_ID_B]->jsonSerialize()['amount']
         );
     }
@@ -59,7 +59,7 @@ class MakeATransferCommandHandlerTest extends TestCase
     public function testShouldThrowErrorWhenAccountIsNotFound(): void
     {
         $command = new MakeATransferCommand(self::ACCOUNT_ID_A, self::ACCOUNT_ID_B, -1);
-        $this->expectException(AccountNotFound::class);
+        $this->expectException(AccountNotFoundException::class);
         $this->handler->execute($command);
     }
 
@@ -83,7 +83,7 @@ class MakeATransferCommandHandlerTest extends TestCase
 
     private function storeAccount(int $id, int $amount): void
     {
-        $account = new Account($id, new Amount($amount));
+        $account = new Account($id, Amount::fromFloat($amount));
         $this->repository->accounts[$id] = $account;
     }
 }

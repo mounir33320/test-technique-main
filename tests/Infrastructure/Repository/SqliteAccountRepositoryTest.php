@@ -37,7 +37,7 @@ class SqliteAccountRepositoryTest extends TestCase
         $sql = "INSERT INTO account (acc_id, acc_balance) VALUES ($accountId, $balanceInMinorUnit)";
         $this->pdo->exec($sql);
 
-        $expectedAccount = new Account($accountId, new Amount($balance));
+        $expectedAccount = new Account($accountId, Amount::fromFloat($balance));
         $actualAccount = $this->repository->findOneById($accountId);
         $this->assertEquals($expectedAccount, $actualAccount);
     }
@@ -47,7 +47,7 @@ class SqliteAccountRepositoryTest extends TestCase
         $accountId = 1;
         $balanceInMinorUnit = 1000;
         $balance = $balanceInMinorUnit / 100;
-        $account = new Account($accountId, new Amount($balance));
+        $account = new Account($accountId, Amount::fromFloat($balance));
 
         $sql = "INSERT INTO account (acc_id, acc_balance) VALUES ($accountId, $balanceInMinorUnit)";
         $this->pdo->exec($sql);
@@ -56,7 +56,7 @@ class SqliteAccountRepositoryTest extends TestCase
         $updatedAccount = $account->withDraw(10);
         $this->repository->update($updatedAccount);
 
-        $expectedAccount = new Account($accountId, new Amount(0));
+        $expectedAccount = new Account($accountId, Amount::fromFloat(0));
         $fetchedAccount = $this->repository->findOneById($accountId);
         $this->assertEquals($expectedAccount, $fetchedAccount);
     }

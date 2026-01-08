@@ -2,7 +2,7 @@
 
 namespace Aucoffre\Domain\Exception;
 
-class AccountNotFound extends \Exception implements DomainException
+class AccountNotFoundException extends \Exception implements DomainException
 {
     private string $detail;
 
